@@ -1,0 +1,27 @@
+Locator Type,Locator Value Example,Description
+absolute xpath,/html/body/div/h1,Used to find an element starting from the root node (html)
+relative xpath,//h1,used to find the element from the body of the DOM
+specific attribute,//input[@id='user-name'],Used to find the element based on a specific attribute
+Text Function,//p[text()='Welcome to XPath Examples'],Used to identify the element based n the text it contains. The text function must be given the exact text
+Contains Fucntion with TextFunction as parameter,"//p[contains(text(),'co.')]",Used to identify the element based on the partial text
+Contains Function with Attribute,"//a[contains(@href,'log')]",Used to identify the element based on the attibute's text
+Logical AND,//input[@type='email' and @name='cemail'] ,Used to identify the element only if both the xpath condition matches
+Logical OR,//input[@type='email' or  @name='cemail'] ,Used to identify the element if either of the xpath condition matches (Possibility for multiple elements)
+Attribute Startswith,"//input[starts-with(@name,'em')] ",Used to identify the element if the attribute of the element starts with the text mentioned
+Attribute EndsWith,Throws Error,Throws Error
+ParentNode,//button[@id='submit-button']/..,Navigates to the parent node from thechild
+Ancestor Nodes,//button[@id='submit-button']/ancestor::form,Selects all ancestor <form> elements of the <button>.
+Following Sibling,//h2[@class='section-title']/following-sibling::p,"Selects the <p> element following the <h2> with class ""section-title""."
+Preceding Sibling,//li[2]/preceding-sibling::li,Selects the <li> element before the second <li>.
+First Element,//li[1],Selects the first <li> element in the list.
+Last Element,//li[last()],Selects the last <li> element in the list.
+Element at Position,//li[position()=2],Selects the third <li> element in the list.
+Wildcard,//*,Selects all elements in the document.
+Any Attribute,//*[@*],Selects all elements that have any attribute.
+Descendant Nodes,//div[@class='nested']//span,"Selects all descendant <span> elements under the <div> with class ""nested""."
+Direct Child,//ul/li,Selects all direct <li> children of <ul>.
+Indexed Direct Child,//ul/li[2],Selects the second <li> child of <ul>.
+Multiple Attributes,//input[@type='text'][@name='username'],"Selects the input element with both type=""text"" and name=""username""."
+Contains Multiple,"//*[contains(@class, 'content') or contains(@class, 'highlight')]","Selects elements with ""content"" or ""highlight"" in their class attributes."
+Following Nodes,//h2[@class='section-title']/following::*,"Selects all nodes after the <h2> with class ""section-title""."
+Preceding Nodes,//li[last()]/preceding::*,Selects all nodes before the last <li> element.

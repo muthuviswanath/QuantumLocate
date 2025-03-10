@@ -1,0 +1,16 @@
+Locator Type,Locator Value Example,Description
+Universal,*,Selects all the elements in the webpage
+Type Selector,h1,It identifies all the h1 tags in the webpage
+Class Selector,.class-name,It identifies all the elements that belongs to that class
+Id Selector,#id-name,It identifies a single element using the id attribute
+Attribute Selector,[attribute='value'],It identifies elements that matches the attribute and its value
+Starts-with,[attribute^='value'],It identifies elements that matches the attribute that starts with the charcters mentioned in the value
+Ends-with,[attribute$='value'],It identifies elements that matches the attribute that ends with the charcters mentioned in the value
+Contains,[attribute*='value'],It identifies elements that matches the attribute that contains the charcters mentioned in the value
+Descendent,div ul,It identifies the element that is immediately present (descendent)
+Child Selector,div > p,It identifies the element that is a child irrespective of where it is present
+Sibling Selector,h1 + p,It identifies the element that is immediately present inside a common parent
+General Sibling Selector,h1 ~ p,It identifies the element that is present inside a common parent irrespective of the order of occurance
+Pseudo Classes First Child,p:first-child,It selects the element that is the first child (first element)
+Pseudo Classes Last Child,p:last-child,It selects the element that is the last child (last element)
+Pseudo Classes Nth Child,p:nth-child(2),It selects the element that is the nth child (nth element)

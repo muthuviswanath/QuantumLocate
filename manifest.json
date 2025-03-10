@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "QuantumLocate",
+  "version": "1.0",
+  "description": "AI-powered Selenium Locator Finder with precision & automation.",
+  "icons": {
+    "16": "/public/new_icon.png",
+    "48": "/public/new_icon.png",
+    "128": "/public/new_icon.png"
+  },
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "src/background/background.js"
+  },
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/content.js"]
+    }
+  ],
+  "devtools_page":"src/devtools/devtools.html",
+  "action": {
+
+    "default_icon": "/public/new_icon.png"
+  }
+}
