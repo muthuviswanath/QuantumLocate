@@ -311,3 +311,73 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const inputBox = document.getElementById("selectorInput");
+  const suggestionBox = document.getElementById("suggestion-box");
+  const resultCount = document.getElementById("result-count");
+
+  let cachedQueries = {};
+
+  inputBox.addEventListener("input", function () {
+      const query = inputBox.value.trim();
+      if (query === "") {
+          suggestionBox.innerHTML = "";
+          resultCount.textContent = "";
+          return;
+      }
+
+      if (cachedQueries[query]) {
+          displayResults(cachedQueries[query]);
+          return;
+      }
+
+      chrome.devtools.inspectedWindow.eval(`
+          (function() {
+              try {
+                  let elements;
+                  if ('${query}'.startsWith('/') || '${query}'.startsWith('.//')) {
+                      let xpathResult = document.evaluate('${query}', document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+                      elements = [];
+                      for (let i = 0; i < xpathResult.snapshotLength; i++) {
+                          elements.push(xpathResult.snapshotItem(i));
+                      }
+                  } else {
+                      elements = Array.from(document.querySelectorAll('${query}'));
+                  }
+                  
+                  elements.forEach(el => el.style.outline = "");
+                  elements.slice(0, 5).forEach(el => el.style.outline = "2px solid red");
+                  
+                  return { count: elements.length, suggestions: elements.slice(0, 5).map(el => el.tagName.toLowerCase() + (el.id ? '#' + el.id : '')) };
+              } catch (e) {
+                  return { count: 0, suggestions: [] };
+              }
+          })();
+      `, function(result, isException) {
+          if (isException || !result) {
+              resultCount.textContent = "Invalid selector";
+              suggestionBox.innerHTML = "";
+              return;
+          }
+          cachedQueries[query] = result;
+          displayResults(result);
+      });
+  });
+
+  function displayResults(result) {
+      resultCount.textContent = `Matches: ${result.count}`;
+      suggestionBox.innerHTML = result.suggestions.length ? 
+          result.suggestions.map(tag => `<div class="suggestion">${tag}</div>`).join("") : "<div class='no-match'>No suggestions</div>";
+  }
+});
