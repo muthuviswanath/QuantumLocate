@@ -267,12 +267,6 @@ document.getElementById("findElement").addEventListener("click", function() {
 });
 
 
-
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
     const findElementButton = document.querySelector("#findElementBtn");
     const selectorTableBody = document.querySelector("#selectorTable tbody");
